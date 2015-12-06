@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rest-client version="3.2.2"><request><http-version>1.1</http-version><http-follow-redirects/><URL>http://whatiamwar-simulant.rhcloud.com/api_v1/message/create</URL><method>POST</method><body><string content-type="application/json" charset="UTF-8">{"email": "simulant88@gmail.com", 
+"session": "5d22efbfbd381aefbfbdefbfbdefbfbdefbfbd674e00efbfbd200f0e4450efbfbdefbfbdefbfbdefbfbd1a4cefbfbdefbfbdcba6efbfbdefbfbd61",
+"receiver": "kult.nils@gmail.com",
+"text": "secret text"}</string></body></request></rest-client>
