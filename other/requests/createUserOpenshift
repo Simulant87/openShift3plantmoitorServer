@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rest-client version="3.2.2"><request><http-version>1.1</http-version><http-follow-redirects/><URL>http://whatiamwar-simulant.rhcloud.com/api_v1/user/create</URL><method>POST</method><body><string content-type="application/json" charset="UTF-8">{"email": "simulant88@gmail.com", 
-"password": "123"
-}</string></body></request></rest-client>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rest-client version="3.2.2"><request><http-version>1.1</http-version><http-follow-redirects/><URL>http://localhost:8080/api_v1/message/create</URL><method>POST</method><body><string content-type="application/json" charset="UTF-8">{"email": "simulant88@gmail.com", 
-"session": "204321efbfbd54efbfbd3defbfbd1159efbfbdefbfbd1aefbfbd20dc9d51efbfbd072107e492b2efbfbdefbfbd7aefbfbdefbfbdefbfbd",
-"receiver": "kult.nils@gmail.com",
-"text": "secret text"}</string></body></request></rest-client>
