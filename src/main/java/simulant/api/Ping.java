@@ -27,4 +27,10 @@ public class Ping {
 		return "{\"ping\": pong}";
 	}
 
+	@RequestMapping(value = "/pong", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody String postPong(String pong) {
+		return pong;
+	}
+
 }
