@@ -18,8 +18,10 @@ public class TemperatureMeasurement {
     private long id;
     @Type(type = "timestamp")
     private Date date;
-    private double temperatureValue;
+    private Double temperatureValue;
     private String temperatureUnit;
+    private Double humidityValue;
+    private String humidityUnit = "percentage";
 
     public long getId() {
         return id;
@@ -37,11 +39,11 @@ public class TemperatureMeasurement {
         this.date = date;
     }
 
-    public double getTemperatureValue() {
+    public Double getTemperatureValue() {
         return temperatureValue;
     }
 
-    public void setTemperatureValue(double temperatureValue) {
+    public void setTemperatureValue(Double temperatureValue) {
         this.temperatureValue = temperatureValue;
     }
 
@@ -51,5 +53,21 @@ public class TemperatureMeasurement {
 
     public void setTemperatureUnit(String temperatureUnit) {
         this.temperatureUnit = temperatureUnit;
+    }
+
+    public Double getHumidityValue() {
+        return humidityValue;
+    }
+
+    public void setHumidityValue(Double humidityValue) {
+        this.humidityValue = humidityValue;
+    }
+
+    public String getHumidityUnit() {
+        return humidityUnit;
+    }
+
+    public void setHumidityUnit(String humidityUnit) {
+        this.humidityUnit = humidityUnit;
     }
 }

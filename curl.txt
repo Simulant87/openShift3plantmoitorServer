@@ -1,0 +1,2 @@
+curl -X POST http://localhost:8080/temperature --data '{"date":null, "temperatureValue":22.8, "temperatureUnit":"Celsius"}' -i -H "Content-Type":"application/json"
+curl -X POST http://webproject-simulant.rhcloud.com/temperature --data '{"date":1489863694240, "temperatureValue":22.8, "temperatureUnit":"Celsius"}' -i -H "Content-Type":"application/json"
