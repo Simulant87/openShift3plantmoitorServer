@@ -14,5 +14,4 @@ public interface TemperatureMeasurementRepository extends CrudRepository<Tempera
      * @return the latest measurement.
      */
     TemperatureMeasurement findFirstByOrderByDateDesc();
-
 }
