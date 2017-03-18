@@ -1,5 +1,7 @@
 package simulant.temperaturemonitor.persistence.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +16,7 @@ public class TemperatureMeasurement {
     @Id
     @GeneratedValue
     private long id;
+    @Type(type = "timestamp")
     private Date date;
     private double temperatureValue;
     private String temperatureUnit;
