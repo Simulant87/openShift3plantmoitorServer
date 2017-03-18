@@ -20,7 +20,7 @@ public class TemperatureMonitor {
     @RequestMapping(value = "/temperature", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody TemperatureMeasurement getTemperature() {
-        TemperatureMeasurement lastMeasurement = temperatureMeasurementRepository.findOneByOrderByDateDesc();
+        TemperatureMeasurement lastMeasurement = temperatureMeasurementRepository.findFirstByOrderByDateDesc();
         return lastMeasurement;
     }
 
