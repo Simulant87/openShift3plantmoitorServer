@@ -1,6 +1,7 @@
 package simulant.temperaturemonitor.persistence.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 public class TemperatureMeasurement {
 
     @Id
+    @GeneratedValue
     private long id;
     private Date date;
     private double temperatureValue;
