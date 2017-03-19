@@ -1,5 +1,6 @@
 package simulant.temperaturemonitor.persistence.model;
 
+import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
@@ -16,13 +17,14 @@ public class TemperatureMeasurement {
     @Id
     @GeneratedValue
     private long id;
+    @Index(name = "tm_date")
     @Type(type = "timestamp")
     private Date date;
     private Double temperatureValue;
     private String temperatureUnit;
     private Double humidityValue;
-    private String humidityUnit = "percentage";
-    //private String location;
+    private String humidityUnit;
+    private String location;
 
     public long getId() {
         return id;
@@ -72,11 +74,11 @@ public class TemperatureMeasurement {
         this.humidityUnit = humidityUnit;
     }
 
-//    public String getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(String location) {
-//        this.location = location;
-//    }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }
