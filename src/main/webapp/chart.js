@@ -1,5 +1,5 @@
 var xhttp = new XMLHttpRequest();
-xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature", false);
+xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature/clear", false);
 xhttp.send();
 var json = $.parseJSON(xhttp.responseText);
 var labelsData = [];
@@ -8,22 +8,25 @@ var temperatureData = [];
 for(int i = 0; i < json.length; i++) {
     var measurement = json[i];
     document.getElementById("demo").innerHTML = measurement;
+    labelsData.push(measurement.date);
+    humidityData.push(measurement.humidityValue);
+    temperatureData.push(measurement.temperatureValue);
 }
 
 var canvas = document.getElementById('chart');
 new Chart(canvas, {
   type: 'line',
   data: {
-    labels: ['1489922316000', '1489922436000', '1489922436000', '1489923035000'],
+    labels: labelsData,
     datasets: [{
       label: 'temperature in Celsius',
       yAxisID: 'temperature',
-      data: [18.8, null, 20.8, 20.2],
+      data: temperatureData,
       backgroundColor: "rgba(255, 153, 0, 0.6)"
     }, {
       label: 'humidity in percentage',
       yAxisID: 'humidity',
-      data: [60.99995559, 80.3456765, null, 35.23456],
+      data: humidityData,
       backgroundColor: "rgba(153, 255, 51, 0.6)"
     }]
   },

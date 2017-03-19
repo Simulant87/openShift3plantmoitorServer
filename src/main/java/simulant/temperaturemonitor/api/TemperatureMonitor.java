@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import simulant.temperaturemonitor.persistence.TemperatureMeasurementRepository;
 import simulant.temperaturemonitor.persistence.model.TemperatureMeasurement;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -22,6 +23,19 @@ public class TemperatureMonitor {
     @ResponseBody
     public List<TemperatureMeasurement> getTemperatureList() {
         List<TemperatureMeasurement> measurements = temperatureMeasurementRepository.findAllByOrderByDateAsc();
+        return measurements;
+    }
+
+    @RequestMapping(value = "/temperature/clear", method = RequestMethod.GET)
+    @ResponseBody
+    public List<TemperatureMeasurement> getTemperatureClearList() {
+        List<TemperatureMeasurement> measurements = temperatureMeasurementRepository.findAllByOrderByDateAsc();
+        for (Iterator<TemperatureMeasurement> iterator = measurements.iterator(); iterator.hasNext(); ) {
+            TemperatureMeasurement measurement = iterator.next();
+            if (measurement.getHumidityValue() == null || measurement.getTemperatureValue() == null) {
+                iterator.remove();
+            }
+        }
         return measurements;
     }
 
