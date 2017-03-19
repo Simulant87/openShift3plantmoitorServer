@@ -35,7 +35,22 @@ function loadDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature", false);
   xhttp.send();
-  document.getElementById("demo").innerHTML = xhttp.responseText;
+  var json = $.parseJSON(xhttp.responseText);
+  var labelsData = [];
+  var humidityData = [];
+  var temperatureData = [];
+  for(int i = 0; i < json.length; i++) {
+    var measurement = json[i];
+    labelsData.push(measurement.date);
+    humidityData.push(measurement.humidityValue);
+    temperatureData.push(measurement.temperatureValue);
+  }
+  console.log(labelsData);
+  console.log(humidityData);
+  console.log(temperatureData);
+    document.getElementById("demo").innerHTML = labelsData;
+    document.getElementById("demo").innerHTML = humidityData;
+    document.getElementById("demo").innerHTML = temperatureData;
 }
 </script>
 </html>
