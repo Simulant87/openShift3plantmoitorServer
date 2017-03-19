@@ -79,18 +79,18 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- used as persistence Database. //TODO should be MySQL  -->
+		<!-- using MySql instead
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		-->
 
-		<!-- TODO not used yet
+		<!-- used as persistence Database -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		-->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
