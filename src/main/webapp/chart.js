@@ -1,3 +1,15 @@
+var xhttp = new XMLHttpRequest();
+xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature", false);
+xhttp.send();
+var json = $.parseJSON(xhttp.responseText);
+var labelsData = [];
+var humidityData = [];
+var temperatureData = [];
+for(int i = 0; i < json.length; i++) {
+    var measurement = json[i];
+    document.getElementById("demo").innerHTML = measurement;
+}
+
 var canvas = document.getElementById('chart');
 new Chart(canvas, {
   type: 'line',
