@@ -30,5 +30,4 @@ public class Ping {
 	public @ResponseBody String postPong(@RequestBody String pong) {
 		return pong;
 	}
-
 }
