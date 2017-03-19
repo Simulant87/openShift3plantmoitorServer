@@ -22,6 +22,7 @@ public class TemperatureMeasurement {
     private String temperatureUnit;
     private Double humidityValue;
     private String humidityUnit = "percentage";
+    private String location;
 
     public long getId() {
         return id;
@@ -69,5 +70,13 @@ public class TemperatureMeasurement {
 
     public void setHumidityUnit(String humidityUnit) {
         this.humidityUnit = humidityUnit;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
