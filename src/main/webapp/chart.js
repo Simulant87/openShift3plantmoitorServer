@@ -5,7 +5,7 @@ var json = $.parseJSON(xhttp.responseText);
 var labelsData = [];
 var humidityData = [];
 var temperatureData = [];
-for(int i = 0; i < json.length; i++) {
+for(var i = 0; i < json.length; i++) {
     var measurement = json[i];
     document.getElementById("demo").innerHTML = measurement;
     labelsData.push(measurement.date);
