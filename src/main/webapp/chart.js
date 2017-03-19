@@ -7,11 +7,13 @@ var humidityData = [];
 var temperatureData = [];
 for(var i = 0; i < json.length; i++) {
     var measurement = json[i];
-    document.getElementById("demo").innerHTML = measurement;
     labelsData.push(measurement.date);
     humidityData.push(measurement.humidityValue);
     temperatureData.push(measurement.temperatureValue);
 }
+console.log(labelsData);
+console.log(humidityData);
+console.log(temperatureData);
 
 var canvas = document.getElementById('chart');
 new Chart(canvas, {
