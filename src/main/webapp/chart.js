@@ -6,11 +6,13 @@ new Chart(canvas, {
     datasets: [{
       label: 'temperature in Celsius',
       yAxisID: 'temperature',
-      data: [18.8, null, 20.8, 20.2]
+      data: [18.8, null, 20.8, 20.2],
+      backgroundColor: "rgba(255, 153, 0, 0.6)"
     }, {
       label: 'humidity in percentage',
       yAxisID: 'humidity',
-      data: [60.99995559, 80.3456765, null, 35.23456]
+      data: [60.99995559, 80.3456765, null, 35.23456],
+      backgroundColor: "rgba(153, 255, 51, 0.6)"
     }]
   },
   options: {
