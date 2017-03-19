@@ -1,3 +1,20 @@
+Number.prototype.padLeft = function(base,chr){
+   var len = (String(base || 10).length - String(this).length) + 1;
+   return len > 0 ? new Array(len).join(chr || '0') + this : this;
+}
+
+//formats a date to yyyy-mm-dd HH:MM:SS
+function dateFormat(date) {
+    return [ date.getFullYear(),
+    (date.getMonth()+1).padLeft(),
+    date.getDate().padLeft(),
+    ].join('-')+
+    ' ' +
+    [ date.getHours().padLeft(),
+    date.getMinutes().padLeft(),
+    date.getSeconds().padLeft()].join(':');
+}
+
 var xhttp = new XMLHttpRequest();
 xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature/clear", false);
 xhttp.send();
@@ -7,13 +24,10 @@ var humidityData = [];
 var temperatureData = [];
 for(var i = 0; i < json.length; i++) {
     var measurement = json[i];
-    labelsData.push(measurement.date);
+    labelsData.push(dateFormat(new Date(measurement.date)));
     humidityData.push(measurement.humidityValue);
     temperatureData.push(measurement.temperatureValue);
 }
-console.log(labelsData);
-console.log(humidityData);
-console.log(temperatureData);
 
 var canvas = document.getElementById('chart');
 new Chart(canvas, {

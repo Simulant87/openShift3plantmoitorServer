@@ -25,32 +25,4 @@
 </div>
 <script src="chart.js"></script>
 
-
-<p id="demo">Let AJAX change this text.</p>
-
-<button type="button" onclick="loadDoc()">Change Content</button>
-
-<script>
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature/clear", false);
-  xhttp.send();
-  var json = $.parseJSON(xhttp.responseText);
-  var labelsData = [];
-  var humidityData = [];
-  var temperatureData = [];
-  for(var i = 0; i < json.length; i++) {
-    var measurement = json[i];
-    labelsData.push(measurement.date);
-    humidityData.push(measurement.humidityValue);
-    temperatureData.push(measurement.temperatureValue);
-  }
-  console.log(labelsData);
-  console.log(humidityData);
-  console.log(temperatureData);
-    document.getElementById("demo").innerHTML = labelsData;
-    document.getElementById("demo").innerHTML = humidityData;
-    document.getElementById("demo").innerHTML = temperatureData;
-}
-</script>
 </html>
