@@ -16,7 +16,7 @@ function dateFormat(date) {
 }
 
 var xhttp = new XMLHttpRequest();
-xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature/clear", false);
+xhttp.open("GET", "https://webproject-simulant.rhcloud.com/temperature/clear", false);
 xhttp.send();
 var json = $.parseJSON(xhttp.responseText);
 var labelsData = [];
