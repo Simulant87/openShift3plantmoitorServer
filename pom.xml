@@ -97,6 +97,12 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>io.sniffy</groupId>
+			<artifactId>sniffy-web</artifactId>
+			<version>3.1.2</version>
+		</dependency>
 	</dependencies>
 	
 	<profiles>
