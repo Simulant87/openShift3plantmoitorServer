@@ -1,7 +1,0 @@
-eclipse.preferences.version=1
-org.jboss.tools.openshift.ApplicationId=55cbae307628e1fae70000c3
-org.jboss.tools.openshift.ApplicationName=whatiamwar
-org.jboss.tools.openshift.Connection=https\://kult.nils%40googlemail.com@
-org.jboss.tools.openshift.DeployFolder=webapps
-org.jboss.tools.openshift.Domain=simulant
-org.jboss.tools.openshift.RemoteName=origin
