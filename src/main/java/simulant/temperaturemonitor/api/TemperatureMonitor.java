@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by Nils on 18.03.2017.
  */
+@CrossOrigin
 @Controller
 public class TemperatureMonitor {
 
@@ -29,13 +30,8 @@ public class TemperatureMonitor {
     @RequestMapping(value = "/temperature/clear", method = RequestMethod.GET)
     @ResponseBody
     public List<TemperatureMeasurement> getTemperatureClearList() {
-        List<TemperatureMeasurement> measurements = temperatureMeasurementRepository.findAllByOrderByDateAsc();
-        for (Iterator<TemperatureMeasurement> iterator = measurements.iterator(); iterator.hasNext(); ) {
-            TemperatureMeasurement measurement = iterator.next();
-            if (measurement.getHumidityValue() == null || measurement.getTemperatureValue() == null) {
-                iterator.remove();
-            }
-        }
+        List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
+                .findAllAndHumidityValueIsNotNullAndTemperatureValueIsNotNullByOrderByDateAsc();
         return measurements;
     }
 

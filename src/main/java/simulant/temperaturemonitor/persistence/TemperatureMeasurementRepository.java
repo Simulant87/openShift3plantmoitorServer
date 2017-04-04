@@ -11,13 +11,6 @@ import java.util.List;
 public interface TemperatureMeasurementRepository extends CrudRepository<TemperatureMeasurement, Long> {
 
     /**
-     * returns the latest measurement.
-     *
-     * @return the latest measurement.
-     */
-    TemperatureMeasurement findFirstByOrderByDateDesc();
-
-    /**
      * returns the measurement by id.
      *
      * @return the measurement.
@@ -30,4 +23,11 @@ public interface TemperatureMeasurementRepository extends CrudRepository<Tempera
      * @return all measurements.
      */
     List<TemperatureMeasurement> findAllByOrderByDateAsc();
+
+    /**
+     * returns all measurements with valid values.
+     *
+     * @return all measurements with complete values.
+     */
+    List<TemperatureMeasurement> findAllAndHumidityValueIsNotNullAndTemperatureValueIsNotNullByOrderByDateAsc();
 }
