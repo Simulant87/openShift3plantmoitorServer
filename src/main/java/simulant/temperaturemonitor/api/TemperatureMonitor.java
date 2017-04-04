@@ -2,12 +2,13 @@ package simulant.temperaturemonitor.api;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import simulant.temperaturemonitor.persistence.TemperatureMeasurementRepository;
 import simulant.temperaturemonitor.persistence.model.TemperatureMeasurement;
 
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,9 +30,17 @@ public class TemperatureMonitor {
 
     @RequestMapping(value = "/temperature/clear", method = RequestMethod.GET)
     @ResponseBody
-    public List<TemperatureMeasurement> getTemperatureClearList() {
+    public List<TemperatureMeasurement> getTemperatureClearList(
+            @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="MM-dd-yyyy") Date fromDate,
+            @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="MM-dd-yyyy") Date toDate) {
+        if(fromDate == null) {
+            fromDate = new Date(0L);
+        }
+        if(toDate == null) {
+            toDate = new Date();
+        }
         List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
-                .findAllAndHumidityValueIsNotNullAndTemperatureValueIsNotNullByOrderByDateAsc();
+                .findByDateBetweenAndHumidityValueIsNotNullAndTemperatureValueIsNotNullOrderByDateAsc(fromDate, toDate);
         return measurements;
     }
 

@@ -3,6 +3,7 @@ package simulant.temperaturemonitor.persistence;
 import org.springframework.data.repository.CrudRepository;
 import simulant.temperaturemonitor.persistence.model.TemperatureMeasurement;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,9 +26,9 @@ public interface TemperatureMeasurementRepository extends CrudRepository<Tempera
     List<TemperatureMeasurement> findAllByOrderByDateAsc();
 
     /**
-     * returns all measurements with valid values.
+     * returns all measurements with valid values within the given dates.
      *
      * @return all measurements with complete values.
      */
-    List<TemperatureMeasurement> findAllAndHumidityValueIsNotNullAndTemperatureValueIsNotNullByOrderByDateAsc();
+    List<TemperatureMeasurement> findByDateBetweenAndHumidityValueIsNotNullAndTemperatureValueIsNotNullOrderByDateAsc(Date start, Date end);
 }
