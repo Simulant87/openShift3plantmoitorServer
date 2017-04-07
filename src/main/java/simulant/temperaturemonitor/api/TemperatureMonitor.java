@@ -31,8 +31,8 @@ public class TemperatureMonitor {
     @RequestMapping(value = "/temperature/clear", method = RequestMethod.GET)
     @ResponseBody
     public List<TemperatureMeasurement> getTemperatureClearList(
-            @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="MM-dd-yyyy") Date fromDate,
-            @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="MM-dd-yyyy") Date toDate) {
+            @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date fromDate,
+            @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date toDate) {
         if(fromDate == null) {
             fromDate = new Date(0L);
         }
