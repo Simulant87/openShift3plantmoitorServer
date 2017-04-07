@@ -17,7 +17,7 @@ function dateFormat(date) {
 
 function updateChart(fromDate, toDate) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature/clear?fromDate=" + fromDate + "&toDate=" + toDate, false);
+    xhttp.open("GET", "/temperature/clear?fromDate=" + fromDate + "&toDate=" + toDate, false);
     xhttp.send();
     var json = $.parseJSON(xhttp.responseText);
     var labelsData = [];
