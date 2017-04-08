@@ -23,8 +23,17 @@ public class TemperatureMonitor {
 
     @RequestMapping(value = "/temperature", method = RequestMethod.GET)
     @ResponseBody
-    public List<TemperatureMeasurement> getTemperatureList() {
-        List<TemperatureMeasurement> measurements = temperatureMeasurementRepository.findAllByOrderByDateAsc();
+    public List<TemperatureMeasurement> getTemperatureList(
+        @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date fromDate,
+        @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date toDate) {
+            if(fromDate == null) {
+                fromDate = new Date(0L);
+            }
+            if(toDate == null) {
+                toDate = new Date();
+            }
+            List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
+                    .findByDateBetweenOrderByDateAsc(fromDate, toDate);
         return measurements;
     }
 

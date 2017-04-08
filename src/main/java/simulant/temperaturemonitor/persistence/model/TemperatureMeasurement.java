@@ -21,9 +21,7 @@ public class TemperatureMeasurement {
     @Type(type = "timestamp")
     private Date date;
     private Double temperatureValue;
-    private String temperatureUnit;
     private Double humidityValue;
-    private String humidityUnit;
     private String location;
 
     public long getId() {
@@ -50,28 +48,12 @@ public class TemperatureMeasurement {
         this.temperatureValue = temperatureValue;
     }
 
-    public String getTemperatureUnit() {
-        return temperatureUnit;
-    }
-
-    public void setTemperatureUnit(String temperatureUnit) {
-        this.temperatureUnit = temperatureUnit;
-    }
-
     public Double getHumidityValue() {
         return humidityValue;
     }
 
     public void setHumidityValue(Double humidityValue) {
         this.humidityValue = humidityValue;
-    }
-
-    public String getHumidityUnit() {
-        return humidityUnit;
-    }
-
-    public void setHumidityUnit(String humidityUnit) {
-        this.humidityUnit = humidityUnit;
     }
 
     public String getLocation() {

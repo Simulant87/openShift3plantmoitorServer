@@ -30,5 +30,12 @@ public interface TemperatureMeasurementRepository extends CrudRepository<Tempera
      *
      * @return all measurements with complete values.
      */
+    List<TemperatureMeasurement> findByDateBetweenOrderByDateAsc(Date start, Date end);
+
+    /**
+     * returns all measurements with valid values within the given dates.
+     *
+     * @return all measurements with complete values.
+     */
     List<TemperatureMeasurement> findByDateBetweenAndHumidityValueIsNotNullAndTemperatureValueIsNotNullOrderByDateAsc(Date start, Date end);
 }

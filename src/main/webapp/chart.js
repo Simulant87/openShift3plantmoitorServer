@@ -17,7 +17,7 @@ function dateFormat(date) {
 
 function updateChart(fromDate, toDate) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/temperature/clear?fromDate=" + fromDate + "&toDate=" + toDate, false);
+    xhttp.open("GET", "/temperature?fromDate=" + fromDate + "&toDate=" + toDate, false);
     xhttp.send();
     var json = $.parseJSON(xhttp.responseText);
     var labelsData = [];
@@ -26,8 +26,16 @@ function updateChart(fromDate, toDate) {
     for(var i = 0; i < json.length; i++) {
         var measurement = json[i];
         labelsData.push(dateFormat(new Date(measurement.date)));
-        humidityData.push(measurement.humidityValue);
-        temperatureData.push(measurement.temperatureValue);
+        humidity = measurement.humidityValue;
+        if(humidity == null) {
+            humidity = 0.0;
+        }
+        humidityData.push(humidity);
+        temperature = measurement.temperatureValue;
+        if(temperature == null) {
+            temperature = 0.0;
+        }
+        temperatureData.push(temperature);
     }
 
     var canvas = document.getElementById('chart');
