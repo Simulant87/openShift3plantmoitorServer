@@ -22,6 +22,7 @@ public class TemperatureMeasurement {
     private Date date;
     private Double temperatureValue;
     private Double humidityValue;
+    private Integer luxValue;
     private String location;
 
     public long getId() {
@@ -54,6 +55,14 @@ public class TemperatureMeasurement {
 
     public void setHumidityValue(Double humidityValue) {
         this.humidityValue = humidityValue;
+    }
+
+    public Integer getLuxValue() {
+        return luxValue;
+    }
+
+    public void setLuxValue(Integer luxValue) {
+        this.luxValue = luxValue;
     }
 
     public String getLocation() {
