@@ -24,14 +24,19 @@ public class TemperatureMonitor {
     @RequestMapping(value = "/temperature", method = RequestMethod.GET)
     @ResponseBody
     public List<TemperatureMeasurement> getTemperatureList(
-        @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date fromDate,
-        @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date toDate) {
-            if(fromDate == null) {
-                fromDate = new Date(0L);
-            }
-            if(toDate == null) {
-                toDate = new Date();
-            }
+            @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date fromDate,
+            @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date toDate) {
+        if(fromDate == null) {
+            fromDate = new Date(0L);
+        }
+        if(toDate == null) {
+            toDate = new Date();
+        } else {
+            //include the specified date, by setting the time on the end of the day
+            toDate.setHours(23);
+            toDate.setMinutes(59);
+            toDate.setSeconds(59);
+        }
             List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
                     .findByDateBetweenOrderByDateAsc(fromDate, toDate);
         return measurements;
@@ -47,6 +52,11 @@ public class TemperatureMonitor {
         }
         if(toDate == null) {
             toDate = new Date();
+        } else {
+            //include the specified date, by setting the time on the end of the day
+            toDate.setHours(23);
+            toDate.setMinutes(59);
+            toDate.setSeconds(59);
         }
         List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
                 .findByDateBetweenAndHumidityValueIsNotNullAndTemperatureValueIsNotNullOrderByDateAsc(fromDate, toDate);
