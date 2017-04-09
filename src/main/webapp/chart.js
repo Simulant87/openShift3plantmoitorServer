@@ -17,7 +17,7 @@ function dateTimeFormat(date) {
 
 function updateChart(fromDate, toDate) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/temperature?fromDate=" + fromDate + "&toDate=" + toDate, false);
+    xhttp.open("GET", "http://webproject-simulant.rhcloud.com/temperature?fromDate=" + fromDate + "&toDate=" + toDate, false);
     xhttp.send();
     var json = $.parseJSON(xhttp.responseText);
     var labelsData = [];
@@ -48,13 +48,16 @@ function updateChart(fromDate, toDate) {
 
         moisture = measurement.moistureValue;
         if(moisture == null) {
-            moisture = 0;
+            moisture = 1024;
         }
+        moisture = 1024 - moisture; //invert the value because high means dry. We want high to be wet.
+        moisture = (moisture / 1024) * 100; //make it a percentage value
         moistureData.push(moisture);
     }
 
-    var canvas = document.getElementById('temperatureChart');
-    new Chart(canvas, {
+    var temperatureCanvas = document.getElementById('temperatureChart');
+    temperatureCanvas.getContext("2d").clearRect(0, 0, temperatureCanvas.width, temperatureCanvas.height);
+    new Chart(temperatureCanvas, {
         type: 'line',
         data: {
             labels: labelsData,
@@ -86,8 +89,9 @@ function updateChart(fromDate, toDate) {
     });
 
 
-    var canvas = document.getElementById('luxChart');
-    new Chart(canvas, {
+    var luxCanvas = document.getElementById('luxChart');
+    luxCanvas.getContext("2d").clearRect(0, 0, luxCanvas.width, luxCanvas.height);
+    new Chart(luxCanvas, {
         type: 'line',
         data: {
             labels: labelsData,
