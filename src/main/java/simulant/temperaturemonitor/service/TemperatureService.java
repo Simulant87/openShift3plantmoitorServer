@@ -48,8 +48,6 @@ public class TemperatureService {
      * @param temperatureMeasurement
      */
     public void save(TemperatureMeasurement temperatureMeasurement) {
-        //27008 id
-        temperatureMeasurementRepository.delete(27008L);
         temperatureMeasurementRepository.save(temperatureMeasurement);
     }
 }
