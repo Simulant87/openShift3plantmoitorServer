@@ -12,30 +12,10 @@ import java.util.List;
 public interface TemperatureMeasurementRepository extends CrudRepository<TemperatureMeasurement, Long> {
 
     /**
-     * returns the measurement by id.
-     *
-     * @return the measurement.
-     */
-    TemperatureMeasurement findOneById(long id);
-
-    /**
-     * returns all measurements.
-     *
-     * @return all measurements.
-     */
-    List<TemperatureMeasurement> findAllByOrderByDateAsc();
-
-    /**
      * returns all measurements with valid values within the given dates.
      *
      * @return all measurements with complete values.
      */
     List<TemperatureMeasurement> findByDateBetweenOrderByDateAsc(Date start, Date end);
 
-    /**
-     * returns all measurements with valid values within the given dates.
-     *
-     * @return all measurements with complete values.
-     */
-    List<TemperatureMeasurement> findByDateBetweenAndHumidityValueIsNotNullAndTemperatureValueIsNotNullOrderByDateAsc(Date start, Date end);
 }

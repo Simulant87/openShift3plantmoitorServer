@@ -1,12 +1,11 @@
 package simulant.temperaturemonitor.api;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import simulant.temperaturemonitor.persistence.TemperatureMeasurementRepository;
 import simulant.temperaturemonitor.persistence.model.TemperatureMeasurement;
+import simulant.temperaturemonitor.service.TemperatureService;
 
 import java.util.Date;
 import java.util.List;
@@ -19,62 +18,22 @@ import java.util.List;
 public class TemperatureMonitor {
 
     @Autowired
-    private TemperatureMeasurementRepository temperatureMeasurementRepository;
+    TemperatureService temperatureService;
 
     @RequestMapping(value = "/temperature", method = RequestMethod.GET)
     @ResponseBody
     public List<TemperatureMeasurement> getTemperatureList(
             @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date fromDate,
             @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date toDate) {
-        if(fromDate == null) {
-            fromDate = new Date(0L);
-        }
-        if(toDate == null) {
-            toDate = new Date();
-        } else {
-            //include the specified date, by setting the time on the end of the day
-            toDate.setHours(23);
-            toDate.setMinutes(59);
-            toDate.setSeconds(59);
-        }
-            List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
-                    .findByDateBetweenOrderByDateAsc(fromDate, toDate);
-        return measurements;
-    }
 
-    @RequestMapping(value = "/temperature/clear", method = RequestMethod.GET)
-    @ResponseBody
-    public List<TemperatureMeasurement> getTemperatureClearList(
-            @RequestParam(value="fromDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date fromDate,
-            @RequestParam(value="toDate", required = false) @DateTimeFormat(pattern="dd-MM-yyyy") Date toDate) {
-        if(fromDate == null) {
-            fromDate = new Date(0L);
-        }
-        if(toDate == null) {
-            toDate = new Date();
-        } else {
-            //include the specified date, by setting the time on the end of the day
-            toDate.setHours(23);
-            toDate.setMinutes(59);
-            toDate.setSeconds(59);
-        }
-        List<TemperatureMeasurement> measurements = temperatureMeasurementRepository
-                .findByDateBetweenAndHumidityValueIsNotNullAndTemperatureValueIsNotNullOrderByDateAsc(fromDate, toDate);
+        List<TemperatureMeasurement> measurements = temperatureService.getTemperatureList(fromDate, toDate);
         return measurements;
-    }
-
-    @RequestMapping(value = "/temperature/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public TemperatureMeasurement getTemperature(@RequestParam("id") long id) {
-        TemperatureMeasurement lastMeasurement = temperatureMeasurementRepository.findOneById(id);
-        return lastMeasurement;
     }
 
     @RequestMapping(value = "/temperature", method = RequestMethod.POST)
     @ResponseBody
     public String postTemperature(@RequestBody TemperatureMeasurement temperatureMeasurement) {
-        System.out.println("received: " + ToStringBuilder.reflectionToString(temperatureMeasurement));
-        temperatureMeasurementRepository.save(temperatureMeasurement);
+        temperatureService.save(temperatureMeasurement);
         return null;
     }
 
